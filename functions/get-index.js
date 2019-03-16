@@ -14,7 +14,6 @@ const getHtml = () => {
   });
 };
 
-
 module.exports.handler = async (context, req) => {
   try {
     const htmlcontent = await getHtml(); // Get the content
