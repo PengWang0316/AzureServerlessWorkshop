@@ -4,7 +4,7 @@ const fs = require('fs'); // Require the fs library to read files
 
 var html; // Set a variable outside of function in order to reuse
 
-const getHtml = () => {console.log('hit');
+const getHtml = () => {
   if (html) return html;
   return new Promise((resolve, reject) => {
       fs.readFile(`${__dirname}/../static/index.html`, 'utf8', (err, data) => {
@@ -15,7 +15,7 @@ const getHtml = () => {console.log('hit');
 };
 
 
-module.exports.handler = async (context, req) => {console.log(process.version);
+module.exports.handler = async (context, req) => {
   try {
     const htmlcontent = await getHtml(); // Get the content
     context.res = {
