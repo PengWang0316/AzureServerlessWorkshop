@@ -3,8 +3,6 @@ service: kevin-azure-nodejs # NOTE: update this with your service name
 provider:
   name: azure
   location: West US
-  custom:
-    tableName: 
 
 plugins:
   - serverless-azure-functions
@@ -26,7 +24,7 @@ functions:
     events:
       - http: true
         x-azure-settings:
-          authLevel : anonymous
+          authLevel : admin
       - http: true
         x-azure-settings:
           direction: out
