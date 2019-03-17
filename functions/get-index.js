@@ -1,6 +1,8 @@
 'use strict';
 
 const fs = require('fs'); // Require the fs library to read files
+const axios = require('axios');
+const Mustache = require('mustache'); // Template library.
 
 var html; // Set a variable outside of function in order to reuse
 
@@ -14,15 +16,24 @@ const getHtml = () => {
   });
 };
 
+const fetchBooks = () => axios.post(process.env.FETCH_BOOKS_API, { headers: { 'x-functions-key': process.env.FUNCTION_MASTERKEY } });
+
 module.exports.handler = async (context, req) => {
   try {
     const htmlcontent = await getHtml(); // Get the content
+    const books = await fetchBooks();
+
+    const returnHtml = Mustache.render(htmlcontent, {
+      books: books.data,
+      searchAPI: process.env.SEARCH_BOOKS_API,
+    });
+
     context.res = {
       status: 200,
       headers: {
-        'Content-Type': 'text/html',
+        'Content-Type': 'text/html; charset=UTF-8',
       },
-      body: htmlcontent,
+      body: returnHtml,
     };
     context.done();
   } catch (err) {

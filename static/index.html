@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Serverless dome</title>
 
-  
     <style>
       .container {
         margin: 0 auto;
@@ -23,9 +22,17 @@
       }
       .booksDiv {
         display: flex;
-        width: 100%;
-        justify-content: space-evenly;
+        width: 80%;
+        margin: auto;
+        justify-content: center;
         flex-wrap: wrap;
+      }
+      .bookDiv {
+        margin: 20px;
+        width: 200px;
+      }
+      .bookDiv img {
+        width: 100%;
       }
     </style>
 
@@ -41,7 +48,12 @@
     </div>
 
     <div class="booksDiv">
-      
+      {{#books}}
+        <div class="bookDiv">
+          <div><img alt="book" src="{{image}}" /></div>
+          <div>{{name}}</div>
+        </div>
+      {{/books}}
     </div>
   </body>
   <script
