@@ -29,3 +29,14 @@ functions:
         x-azure-settings:
           direction: out
           name: res
+
+  search-books:
+    handler: functions/search-books.handler
+    events:
+      - http: true
+        x-azure-settings:
+          authLevel : function
+      - http: true
+        x-azure-settings:
+          direction: out
+          name: res
