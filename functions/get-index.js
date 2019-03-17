@@ -16,7 +16,7 @@ const getHtml = () => {
   });
 };
 
-const fetchBooks = () => axios.post(process.env.FETCH_BOOKS_API, { headers: { 'x-functions-key': process.env.FUNCTION_MASTERKEY } });
+const fetchBooks = () => axios.get(process.env.FETCH_BOOKS_API);
 
 module.exports.handler = async (context, req) => {
   try {
